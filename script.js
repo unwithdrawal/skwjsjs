@@ -11,6 +11,7 @@ const peer = new Peer({key: 'ebd5349b-10aa-4435-8de0-0b2f303e88d7'});
   const localId = document.getElementById('js-local-id');
   const localText = document.getElementById('js-local-text');
   const callTrigger = document.getElementById('js-call-trigger');
+  const connectTrigger = document.getElementById('js-connect-trigger');
   const closeTrigger = document.getElementById('js-close-trigger');
   const sendTrigger = document.getElementById('js-send-trigger');
   const remoteVideo = document.getElementById('js-remote-stream');
