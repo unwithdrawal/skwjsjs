@@ -129,7 +129,7 @@ peer.on('connection', dataConnection => {
 
     dataConnection.on('data', data => {
       console.log(messages.textContent); 
-      console.log(data);
+      console.log("送られてきたデータはこちら",${data});
       messages.textContent += `Remote: ${data}\n`;
     });
 
