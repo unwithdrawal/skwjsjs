@@ -51,9 +51,18 @@ const peer = new Peer({key: 'ebd5349b-10aa-4435-8de0-0b2f303e88d7'});
       return;
     }
 
-    const dataConnection = peer.connect(remoteId.value);
+    function onClickSend() {
+      const data = localText.value;
+      dataConnection.send(data);
 
-    dataConnection.once('open', async () => {
+      messages.textContent += `You: ${data}\n`;
+      localText.value = '';
+    }
+  });
+    
+    const doubleConnection = peer.call(remoteId.value, localStream);
+  
+  dataConnection.once('open', async () => {
       messages.textContent += `=== DataConnection has been opened ===\n`;
 
       sendTrigger.addEventListener('click', onClickSend);
@@ -72,17 +81,6 @@ const peer = new Peer({key: 'ebd5349b-10aa-4435-8de0-0b2f303e88d7'});
     closeTrigger.addEventListener('click', () => dataConnection.close(true), {
       once: true,
     });
-
-    function onClickSend() {
-      const data = localText.value;
-      dataConnection.send(data);
-
-      messages.textContent += `You: ${data}\n`;
-      localText.value = '';
-    }
-  });
-    
-    const mediaConnection = peer.call(remoteId.value, localStream);
 
     mediaConnection.on('stream', async stream => {
       // Render remote stream for caller
